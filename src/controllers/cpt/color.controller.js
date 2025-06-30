@@ -1,0 +1,30 @@
+import { ColorService } from "../../services/cpt/color.service.js";
+
+// Maneja los errores de forma centralizada para no repetir try/catch
+const asyncHandler = (fn) => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch((err) => {
+    const statusCode = err.statusCode || 500;
+    res.status(statusCode).json({
+      message: err.message || 'Ocurrió un error en el servidor.',
+    });
+  });
+
+export const create = asyncHandler(async (req, res) => {
+  const nuevo = await ColorService.crear(req.body, req.params.empresa);
+  res.status(201).json(nuevo);
+});
+
+export const getAll = asyncHandler(async (req, res) => {
+  const data = await ColorService.obtenerTodos(req.params.empresa);
+  res.status(200).json(data);
+});
+
+export const updateById = asyncHandler(async (req, res) => {
+  const dataActualizado = await ColorService.actualizar(
+    Number(req.params.colorId),
+    req.body,
+    req.params.empresa
+  );
+  res.status(200).json(dataActualizado);
+});
+
