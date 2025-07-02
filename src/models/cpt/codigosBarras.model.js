@@ -1,6 +1,9 @@
 import { connectRCPT, connectCPT } from '../../config/db.js';
+import path from 'path';
 import sql from 'mssql';
 import DBFFile from 'dbffile';
+
+const DATA_PATH = process.env.DATA_FILES_PATH;
 
 export const CodigosBarrasModel = {
   /**
@@ -53,7 +56,7 @@ export const CodigosBarrasModel = {
    * Inserta registros en el archivo CPTAMECO.DBF.
    */
   appendRecordsToDBF: async (registros) => {
-    const dbfPath = 'C:\\Archivos\\Omar Castell\\CPTAMECO.DBF';
+    const dbfPath = path.join(DATA_PATH,  'CPTAMECO.DBF');
     let dbf = null;
 
     try {

@@ -1,7 +1,10 @@
 import { connectAvances } from "../../config/db.js";
+import path from 'path';
 import sql from 'mssql';
 import DBFFile from 'dbffile';
 import { format } from 'date-fns';
+
+const DATA_PATH = process.env.DATA_FILES_PATH;
 
 export const InyeccionModel = {
   getInfoLote: async (lote, anio) => {
@@ -108,8 +111,14 @@ export const InyeccionModel = {
   },
 
   verificarLotesVendidos: async (lotes) => {
-    const dbfPath = 'C:\\config-db\\DETAFACT.DBF';
+    const dbfPath = path.join(DATA_PATH, 'DETAFACT.DBF');
     let dbf = null;
+
+    if (!dbfPath) {
+      console.error("Error: La ruta al archivo DBF no está configurada en las variables de entorno (DBF_FILE_PATH).");
+      throw new Error("Configuración del servidor incompleta.");
+    }
+    
     try {
       dbf = await DBFFile.DBFFile.open(dbfPath);
       const records = await dbf.readRecords();
@@ -144,8 +153,14 @@ export const InyeccionModel = {
   },
 
   obtenerDatosDetaFact: async () => {
-    const dbfPath = 'C:\\config-db\\DETAFACT.DBF';
+    const dbfPath = path.join(DATA_PATH, 'DETAFACT.DBF');
     let dbf = null;
+
+    if (!dbfPath) {
+      console.error("Error: La ruta al archivo DBF no está configurada en las variables de entorno (DBF_FILE_PATH).");
+      throw new Error("Configuración del servidor incompleta.");
+    }
+
     try {
       dbf = await DBFFile.DBFFile.open(dbfPath);
       const records = await dbf.readRecords();

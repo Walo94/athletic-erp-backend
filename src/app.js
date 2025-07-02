@@ -2,22 +2,23 @@ import express from 'express';
 import cors from 'cors';
 
 // Routes de CPT
-import colorRouter from './routes/cpt/color.router.js';
-import corridaRouter from './routes/cpt/corrida.router.js';
-import codigosBarrasRouter from './routes/cpt/codigosBarras.router.js';
-import materialRouter from './routes/cpt/material.router.js';
-import proveedorRouter from './routes/cpt/proveedor.router.js';
-import sublineaRouter from './routes/cpt/sublinea.router.js';
-import lineaRouter from './routes/cpt/linea.router.js';
-import marcaRouter from './routes/cpt/marca.router.js';
-import combinacionRouter from './routes/cpt/combinacion.router.js';
+import colorRouter from './routes/cpt/color.routes.js';
+import corridaRouter from './routes/cpt/corrida.routes.js';
+import codigosBarrasRouter from './routes/cpt/codigosBarras.routes.js';
+import materialRouter from './routes/cpt/material.routes.js';
+import proveedorRouter from './routes/cpt/proveedor.routes.js';
+import sublineaRouter from './routes/cpt/sublinea.routes.js';
+import lineaRouter from './routes/cpt/linea.routes.js';
+import marcaRouter from './routes/cpt/marca.routes.js';
+import combinacionRouter from './routes/cpt/combinacion.routes.js';
 
 // Routes de CMP
-import paqueteRouter from './routes/cmp/paquete.router.js'
-import suelaRouter from './routes/cmp/suela.router.js';
+import paqueteRouter from './routes/cmp/paquete.routes.js'
+import suelaRouter from './routes/cmp/suela.routes.js';
 
 // Routes de INYECCION
-import inyeccionRouter from './routes/inyeccion/inyeccion.router.js';
+import inyeccionRouter from './routes/inyeccion/inyeccion.routes.js';
+import reportesInyeccionRouter from './routes/reportes/reportes-inyeccion.routes.js';
 
 const app = express();
 
@@ -40,8 +41,7 @@ app.use('/api', lineaRouter);
 app.use('/api', marcaRouter);
 app.use('/api', combinacionRouter);
 
-
-
-
+//Rutas de reportes
+app.use('/api', reportesInyeccionRouter);
 
 export default app;
