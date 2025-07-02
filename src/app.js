@@ -6,6 +6,11 @@ import colorRouter from './routes/cpt/color.router.js';
 import corridaRouter from './routes/cpt/corrida.router.js';
 import codigosBarrasRouter from './routes/cpt/codigosBarras.router.js';
 import materialRouter from './routes/cpt/material.router.js';
+import proveedorRouter from './routes/cpt/proveedor.router.js';
+import sublineaRouter from './routes/cpt/sublinea.router.js';
+import lineaRouter from './routes/cpt/linea.router.js';
+import marcaRouter from './routes/cpt/marca.router.js';
+import combinacionRouter from './routes/cpt/combinacion.router.js';
 
 // Routes de CMP
 import paqueteRouter from './routes/cmp/paquete.router.js'
@@ -28,6 +33,15 @@ app.use('/api', paqueteRouter);
 app.use('/api', suelaRouter);
 app.use('/api', inyeccionRouter);
 app.use('/api', codigosBarrasRouter);
+app.use('/api', proveedorRouter);
 app.use('/api', materialRouter);
+app.use('/api', sublineaRouter);
+app.use('/api', lineaRouter);
+app.use('/api', marcaRouter);
+app.use('/api', combinacionRouter);
+
+
+
+
 
 export default app;

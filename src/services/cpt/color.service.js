@@ -27,11 +27,13 @@ export const ColorService = {
   actualizar: async (colorId, data, empresa) => {
     // Valida que el color a actualizar exista primero
     await ColorService.obtenerPorId(colorId, empresa);
+
     if (!data.descripcion) {
       const error = new Error('La descripción es requerida para actualizar.');
       error.statusCode = 400;
       throw error;
     }
+
     return ColorModel.update(colorId, data, empresa);
   },
 

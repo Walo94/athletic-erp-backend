@@ -32,11 +32,12 @@ export const MaterialModel = {
       request.input('material', sql.SmallInt, data.material);
       request.input('descripcion', sql.VarChar(20), data.descripcion);
 
-      const query1 = `INSERT INTO ${db1}.dbo.Materiales (Material, Descripcion) VALUES (@material, @descripcion)`;
-      const query2 = `INSERT INTO ${db2}.dbo.Materiales (Material, Descripcion) VALUES (@material, @descripcion)`;
+      const queryTemplate = `
+        INSERT INTO %db%.dbo.Materiales (Material, Descripcion) 
+        VALUES (@material, @descripcion)`;
 
-      await request.query(query1);
-      await request.query(query2);
+      await request.query(queryTemplate.replace('%db%', db1));
+      await request.query(queryTemplate.replace('%db%', db2));
 
       await transaction.commit();
       return { material: data.material, descripcion: data.descripcion };
@@ -70,11 +71,13 @@ export const MaterialModel = {
       request.input('materialId', sql.SmallInt, materialId);
       request.input('descripcion', sql.VarChar(20), data.descripcion);
 
-      const query1 = `UPDATE ${db1}.dbo.Materiales SET Descripcion = @descripcion WHERE Material = @materialId`;
-      const query2 = `UPDATE ${db2}.dbo.Materiales SET Descripcion = @descripcion WHERE Material = @materialId`;
+      const queryTemplate = `
+        UPDATE %db%.dbo.Materiales 
+        SET Descripcion = @descripcion 
+        WHERE Material = @materialId`;
 
-      await request.query(query1);
-      await request.query(query2);
+      await request.query(queryTemplate.replace('%db%', db1));
+      await request.query(queryTemplate.replace('%db%', db2));
 
       await transaction.commit();
       return { material: materialId, descripcion: data.descripcion };
