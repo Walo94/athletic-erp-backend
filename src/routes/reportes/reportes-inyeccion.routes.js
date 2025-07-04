@@ -23,7 +23,7 @@ const handleReportError = (error, res) => {
  */
 router.get('/reportes/avance-dia', async (req, res) => {
   try {
-    const response = await axios.get(`http://localhost:8080/reportes-api/inyeccion/avance-dia`, {
+    const response = await axios.get(`http://localhost:8081/reportes-api/inyeccion/avance-dia`, {
       params: req.query, // Pasa todos los query params (ej: 'dia') al servicio de Spring
       responseType: 'arraybuffer' // Esencial para recibir el PDF como datos binarios
     });
@@ -40,7 +40,7 @@ router.get('/reportes/avance-dia', async (req, res) => {
  */
 router.get('/reportes/avance-semana', async (req, res) => {
   try {
-    const response = await axios.get(`http://localhost:8080/reportes-api/inyeccion/avance-semana`, {
+    const response = await axios.get(`http://localhost:8081/reportes-api/inyeccion/avance-semana`, {
       params: req.query, // Pasa 'anio' y 'semana'
       responseType: 'arraybuffer'
     });
@@ -57,7 +57,7 @@ router.get('/reportes/avance-semana', async (req, res) => {
  */
 router.get('/reportes/inventario-proceso', async (req, res) => {
   try {
-    const response = await axios.get(`http://localhost:8080/reportes-api/inyeccion/inventario-proceso`, {
+    const response = await axios.get(`http://localhost:8081/reportes-api/inyeccion/inventario-proceso`, {
       responseType: 'arraybuffer'
     });
     res.setHeader('Content-Type', 'application/pdf');
