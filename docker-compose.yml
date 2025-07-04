@@ -21,7 +21,7 @@ services:
     depends_on:
       - servidor-reportes # Le dice a Docker que inicie el servicio de reportes primero
     volumes:
-      - /d/ERP/data-files:/app/data
+      - /d/ERP/dbf:/app/data
 
   # Servicio de Reportes (Spring Boot)
   servidor-reportes:
